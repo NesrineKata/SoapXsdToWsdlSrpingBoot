@@ -3,6 +3,7 @@ package tekup.de.soap;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -49,12 +50,14 @@ public class CertifEndpoint {
     		Exam e=examRepo.findExamById(request/*.getValue()*/.getExamCode());
     		response.setStudent(s);
     		response.setExam(e);
-    		LocalDate localDate = LocalDate.now().plusDays(7);
-
+    		
     		XMLGregorianCalendar now = null;
     		try {
     			DatatypeFactory dataFactory = DatatypeFactory.newInstance();
     			now = dataFactory.newXMLGregorianCalendar(new GregorianCalendar());
+    			GregorianCalendar calendar = now.toGregorianCalendar();
+    			calendar.add(Calendar.DAY_OF_MONTH, +7);
+    			now= dataFactory.newXMLGregorianCalendar(calendar);
     		} catch (DatatypeConfigurationException ex) {
     			System.err.println("unable to construct the date/time object");
     			ex.printStackTrace();

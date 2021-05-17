@@ -43,7 +43,7 @@ public class StudentRepository {
     	ad3.setStreet("farhat hached");
         Student ali = new Student();
         ali.setId(3);
-        ali.setName("Ali");
+        ali.setName("Arij");
         ali.setAddress(ad3);
         students.put(ali.getId(),ali);
  
